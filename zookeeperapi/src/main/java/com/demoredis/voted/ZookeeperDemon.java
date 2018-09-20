@@ -11,7 +11,7 @@ import java.util.concurrent.CountDownLatch;
  * Created by huangjinlong7 on 2017/8/24.
  */
 public class ZookeeperDemon {
-    static final String CONNECT_ADDR = "10.33.242.51:2182,10.33.242.52:2182,10.33.242.57:2182";
+    static final String CONNECT_ADDR = "10.33.42.51:2182,10.33.42.52:2182,10.33.42.57:2182";
     static final int SESSION_OUTTIME = 2000;//ms
     /** 信号量，阻塞程序执行，用于等待zookeeper连接成功，发送成功信号 */
     static final CountDownLatch connectedSemaphore = new CountDownLatch(1);
@@ -37,10 +37,13 @@ public class ZookeeperDemon {
         connectedSemaphore.await();
 
         System.out.println("..");
-        zk.create("/testDemo", "testRoot".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+        //zk.create("/testDemo", "testRoot".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
         zk.create("/testDemo/testSon", "testSon".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
         System.out.println(zk.getData("/testDemo", false, null));
         System.out.println(zk.getChildren("/testDemo", false));
+
+        zk.setData("/testDemo", "modify data".getBytes(), -1);
+
         //创建父节点
 //      zk.create("/testRoot", "testRoot".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
 
