@@ -1,4 +1,7 @@
 import demonredis.voted.article.serviceImpl.ArticleOperatorServiceImpl;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
 import org.junit.Test;
 /**
  * Created by huangjinlong7 on 2017/7/1.
@@ -21,6 +24,10 @@ public class VoetedTest {
     public void testvoteArticles(){
         ArticleOperatorServiceImpl imp = new ArticleOperatorServiceImpl();
         imp.voteArticle("3", "jun");
+
+        ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<String>(2);
+        LinkedBlockingQueue linkedBlockingQueue = new LinkedBlockingQueue();
+
     }
 
 }

@@ -15,6 +15,7 @@
         <module>zookeeperapi</module>
         <module>elasticsearchapi</module>
         <module>luceneapi</module>
+      <module>rabbitmq</module>
     </modules>
 
     <dependencyManagement>
